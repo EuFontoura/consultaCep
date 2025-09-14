@@ -4,13 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consulta CEP - Juiz de Fora</title>
-    <style>
-        body { font-family: Arial; display:flex; justify-content:center; align-items:center; height:100vh; }
-        .container { background:#fff; padding:2rem; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.1); text-align:center; width:300px; }
-        input, button { width:100%; padding:0.5rem; margin-bottom:1rem; border-radius:5px; border:1px solid #ccc; }
-        button { background:#007bff; color:#fff; border:none; cursor:pointer; }
-        .result { margin-top:1rem; font-weight:bold; }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
@@ -19,42 +13,6 @@
         <button onclick="searchCEP()">Consultar</button>
         <div class="result" id="result"></div>
     </div>
-
-<script>
-    const input = document.getElementById("streetInput");
-
-    // Adiciona listener para "Enter"
-    input.addEventListener("keydown", function(event) {
-        if (event.key === "Enter") {
-            searchCEP();
-        }
-    });
-
-    async function searchCEP() {
-        const rua = input.value;
-        const resultDiv = document.getElementById("result");
-
-        if (!rua) {
-            resultDiv.textContent = "Digite o nome da rua!";
-            return;
-        }
-
-        const url = `https://viacep.com.br/ws/mg/juiz%20de%20fora/${encodeURIComponent(rua)}/json/`;
-
-        try {
-            const response = await fetch(url);
-            const data = await response.json();
-
-            if (data.length > 0) {
-                resultDiv.textContent = `Rua: ${data[0].logradouro} - CEP: ${data[0].cep}`;
-            } else {
-                resultDiv.textContent = "Rua não encontrada em Juiz de Fora.";
-            }
-        } catch (error) {
-            resultDiv.textContent = "Erro ao consultar a API.";
-            console.error(error);
-        }
-    }
-</script>
+    <script src="script.js"></script>
 </body>
 </html>
