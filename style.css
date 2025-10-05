@@ -4,6 +4,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background: #f7f9fc;
 }
 
 .container {
@@ -31,7 +32,26 @@ button {
   cursor: pointer;
 }
 
+button:hover {
+  background: #0056b3;
+}
+
 .result {
   margin-top: 1rem;
   font-weight: bold;
+}
+
+.copy-btn {
+  margin-top: 0.5rem;
+  width: auto;
+  padding: 0.4rem 0.8rem;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.copy-btn:hover {
+  background: #218838;
 }

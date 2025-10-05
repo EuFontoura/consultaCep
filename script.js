@@ -7,8 +7,10 @@ input.addEventListener("keydown", function (event) {
 });
 
 async function searchCEP() {
-  const rua = input.value;
+  const rua = input.value.trim();
   const resultDiv = document.getElementById("result");
+
+  resultDiv.innerHTML = ""; // limpa resultado anterior
 
   if (!rua) {
     resultDiv.textContent = "Digite o nome da rua!";
@@ -24,7 +26,27 @@ async function searchCEP() {
     const data = await response.json();
 
     if (data.length > 0) {
-      resultDiv.textContent = `Rua: ${data[0].logradouro} - CEP: ${data[0].cep}`;
+      const cep = data[0].cep.replace(/\D/g, ""); // só números
+      const logradouro = data[0].logradouro;
+
+      resultDiv.innerHTML = `
+        Rua: ${logradouro} <br>
+        CEP: <span id="cepValue">${cep}</span>
+        <button id="copyBtn" class="copy-btn">Copiar CEP</button>
+      `;
+
+      // botão de copiar
+      document.getElementById("copyBtn").addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(cep);
+          const btn = document.getElementById("copyBtn");
+          btn.textContent = "Copiado!";
+          setTimeout(() => (btn.textContent = "Copiar CEP"), 2000);
+        } catch (err) {
+          alert("Erro ao copiar o CEP.");
+          console.error(err);
+        }
+      });
     } else {
       resultDiv.textContent = "Rua não encontrada em Juiz de Fora.";
     }
