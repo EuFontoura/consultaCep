@@ -7,7 +7,7 @@ Um site simples criado com o intuito de facilitar a consulta de cep para a cidad
 
 **Front-end:** JavaScript, CSS, HTML
 
-**API:** ViaCEP
+**API:** ViaCEP, RepublicaVirtual
 
 
 
